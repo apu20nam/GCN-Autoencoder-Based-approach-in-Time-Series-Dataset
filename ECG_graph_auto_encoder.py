@@ -28,8 +28,8 @@ train_data, test_data, train_labels, test_labels = train_test_split(
     data, labels, test_size=0.2, random_state=42, stratify=labels
 )
 
-# Improved graph creation with better connectivity
-def create_improved_graphs(samples, k_neighbors=5):
+
+def create_graphs(samples, k_neighbors=5):
     """Create graphs with better connectivity patterns"""
     data_list = []
     seq_len = samples.shape[1]
@@ -67,14 +67,14 @@ def create_improved_graphs(samples, k_neighbors=5):
     return data_list
 
 print("Creating improved graph representations...")
-train_graphs = create_improved_graphs(train_data)
-test_graphs = create_improved_graphs(test_data)
+train_graphs = create__graphs(train_data)
+test_graphs = create_graphs(test_data)
 
 # Create data loaders for better batch processing
 train_loader = DataLoader(train_graphs, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_graphs, batch_size=32, shuffle=False)
 
-# Improved GNN Autoencoder with better architecture
+
 class ImprovedGCNEncoder(torch.nn.Module):
     def __init__(self, in_channels, hidden_channels, latent_dim):
         super().__init__()
